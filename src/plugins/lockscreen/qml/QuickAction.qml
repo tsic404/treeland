@@ -11,10 +11,6 @@ Column {
 
     TimeDateWidget {
         id: timedate
-        currentLocale :{
-            let user = UserModel.get(UserModel.currentUserName)
-            return user.locale
-        }
         width: 400
         height: 157
     }

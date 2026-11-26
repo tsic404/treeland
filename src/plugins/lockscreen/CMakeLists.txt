@@ -14,6 +14,8 @@ qt_add_qml_module(lockscreen
     SOURCES
         logoprovider.h
         logoprovider.cpp
+        regionformatprovider.h
+        regionformatprovider.cpp
     QML_FILES
         qml/HintLabel.qml
         qml/LoginAnimation.qml

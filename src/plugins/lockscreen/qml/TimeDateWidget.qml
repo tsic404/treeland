@@ -9,7 +9,11 @@ Control {
     id: timedataWidget
 
     property date currentDate: new Date()
-    property var currentLocale: Qt.locale()
+    property var currentLocale: regionFormat.locale
+
+    RegionFormatProvider {
+        id: regionFormat
+    }
 
     Timer {
         interval: 1000
@@ -24,7 +28,9 @@ Control {
 
     Text {
         id: timeText
-        text: currentDate.toLocaleTimeString(currentLocale, "HH:mm")
+        text: regionFormat.shortTimeFormat !== ""
+              ? currentDate.toLocaleTimeString(currentLocale, regionFormat.shortTimeFormat)
+              : currentDate.toLocaleTimeString(currentLocale)
         font.weight: Font.Light
         font.pixelSize: 80
         color: palette.windowText
@@ -38,7 +44,9 @@ Control {
 
     Text {
         id: dateText
-        text: currentDate.toLocaleDateString(currentLocale)
+        text: regionFormat.shortDateFormat !== ""
+              ? currentDate.toLocaleDateString(currentLocale, regionFormat.shortDateFormat)
+              : currentDate.toLocaleDateString(currentLocale)
         font.weight: Font.Normal
         font.pixelSize: 20
         color: palette.windowText
